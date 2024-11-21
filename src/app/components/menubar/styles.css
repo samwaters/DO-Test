@@ -1,0 +1,29 @@
+.menubar {
+    align-items: center;
+    border-bottom: 1px solid var(--secondary);
+    display: flex;
+    height: 64px;
+    padding: 0 32px 0 16px;
+}
+
+.menubar-left {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    gap: 10px;
+}
+
+.menubar-logo {
+    font-size: 28px;
+}
+.menubar-title {
+    font-size: 22px;
+}
+
+.menubar-right {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-end;
+    width: 250px;
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, MouseEvent } from "react";
 import {
   addEdge,
   Background,
@@ -20,6 +20,7 @@ import { useDnD } from "../contexts/DnDContext";
 import "@xyflow/react/dist/style.css";
 import "./styles.css";
 import EmailNode from "./nodes/EmailNode";
+import {MenuBar} from "@/app/components/menubar/menubar";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
@@ -85,28 +86,36 @@ const AutomationBuilder = () => {
     [screenToFlowPosition, type, setNodes]
   );
 
+  const onNodeClick = (e: MouseEvent<Element>, node: Record<string, unknown>) => {
+    console.log("NODE CLICK", e, node)
+  }
+
   return (
-    <div className="automation-builder">
-      <div className="reactflow-wrapper" ref={reactFlowWrapper}>
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          fitView
-          className="overview"
-          onDrop={onDrop}
-          onDragOver={onDragOver}
-          nodeTypes={nodeTypes}
-        >
-          <MiniMap zoomable pannable />
-          <Controls />
-          <Background />
-        </ReactFlow>
+      <div className="container">
+        <MenuBar />
+        <div className="automation-builder">
+          <div className="reactflow-wrapper" ref={reactFlowWrapper}>
+            <ReactFlow
+              nodes={nodes}
+              edges={edges}
+              onNodeClick={onNodeClick}
+              onNodesChange={onNodesChange}
+              onEdgesChange={onEdgesChange}
+              onConnect={onConnect}
+              fitView
+              className="overview"
+              onDrop={onDrop}
+              onDragOver={onDragOver}
+              nodeTypes={nodeTypes}
+            >
+              <MiniMap zoomable pannable />
+              <Controls />
+              <Background />
+            </ReactFlow>
+          </div>
+          <Sidebar />
+        </div>
       </div>
-      <Sidebar />
-    </div>
   );
 };
 

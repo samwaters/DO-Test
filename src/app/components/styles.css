@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+.container {
+    height: 100%;
+}
+
 .automation-builder {
     display: flex;
     flex-direction: row;
