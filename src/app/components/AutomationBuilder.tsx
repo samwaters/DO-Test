@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, MouseEvent } from "react";
+import { useCallback, useEffect, useRef, DragEvent, MouseEvent } from "react";
 import {
   addEdge,
   Background,
@@ -15,7 +15,9 @@ import {
 } from "@xyflow/react";
 
 import Sidebar from "./Sidebar";
+import { Modal } from "./modal/modal"
 import { useDnD } from "../contexts/DnDContext";
+import { useModal } from "../contexts/modalcontext";
 
 import "@xyflow/react/dist/style.css";
 import "./styles.css";
@@ -30,8 +32,11 @@ const nodeTypes: NodeTypes = {
   email: EmailNode,
 };
 
+type Node = { data: { label: string }, id: string, measured: {height: number, width: number}, position: { x: number, y: number}, type: string }
+
 const AutomationBuilder = () => {
   const reactFlowWrapper = useRef(null);
+  const { setOpen, setTargetNodeId } = useModal()
 
   const { screenToFlowPosition } = useReactFlow();
   const { type } = useDnD();
@@ -56,13 +61,13 @@ const AutomationBuilder = () => {
     [setEdges]
   );
 
-  const onDragOver = useCallback((event: React.DragEvent) => {
+  const onDragOver = useCallback((event: DragEvent) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
   }, []);
 
   const onDrop = useCallback(
-    (event: React.DragEvent) => {
+    (event: DragEvent) => {
       event.preventDefault();
 
       // check if the dropped element is valid
@@ -74,20 +79,36 @@ const AutomationBuilder = () => {
         x: event.clientX,
         y: event.clientY,
       });
+      const id = getId()
       const newNode = {
-        id: getId(),
+        id,
         type,
         position,
         data: { label: `${type} node` },
       };
 
+      // @ts-expect-error Typing issue
       setNodes((nds) => [...nds, newNode]);
+      // Small delay to let the node position
+      setTimeout(() => {
+        setTargetNodeId(id)
+        setOpen(true)
+      }, 100)
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [screenToFlowPosition, type, setNodes]
   );
 
+  const onClick = useCallback(() => {
+    setOpen(false)
+    setTargetNodeId(null)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const onNodeClick = (e: MouseEvent<Element>, node: Record<string, unknown>) => {
-    console.log("NODE CLICK", e, node)
+    e.stopPropagation()
+    setTargetNodeId((node as Node).id)
+    setOpen(true)
   }
 
   return (
@@ -98,6 +119,7 @@ const AutomationBuilder = () => {
             <ReactFlow
               nodes={nodes}
               edges={edges}
+              onClick={onClick}
               onNodeClick={onNodeClick}
               onNodesChange={onNodesChange}
               onEdgesChange={onEdgesChange}
@@ -114,6 +136,7 @@ const AutomationBuilder = () => {
             </ReactFlow>
           </div>
           <Sidebar />
+          <Modal />
         </div>
       </div>
   );

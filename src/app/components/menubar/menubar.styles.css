@@ -1,9 +1,10 @@
 .menubar {
     align-items: center;
-    border-bottom: 1px solid var(--secondary);
+    border-bottom: 1px solid var(--primary);
+    color: var(--text);
     display: flex;
     height: 64px;
-    padding: 0 32px 0 16px;
+    padding: 0 16px;
 }
 
 .menubar-left {

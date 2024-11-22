@@ -1,4 +1,4 @@
-import "./styles.css"
+import "./menubar.styles.css"
 import {TiFlowMerge} from "react-icons/ti";
 import {IconButton} from "@/app/components/ui/iconbutton";
 import {MdFileDownload, MdOutlineSave} from "react-icons/md";

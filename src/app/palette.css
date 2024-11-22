@@ -3,11 +3,16 @@
     --foreground: #171717;
     --primary: #bbbbbb;
     --secondary: #eeeeee;
+    --text: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
+        --background: #222426;
+        --foreground: #181a1b;
+        --primary: #43449c;
+        --secondary: #111315;
+        --text: #e8e6e3;
+        --xy-node-background-color-default: #1811ab;
     }
 }

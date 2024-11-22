@@ -1,0 +1,20 @@
+.text-input {
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    outline: none;
+}
+
+.text-input-small {
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+.text-input-medium {
+    font-size: 16px;
+    padding: 10px 15px;
+}
+
+.text-input-large {
+    font-size: 20px;
+    padding: 20px 30px;
+}

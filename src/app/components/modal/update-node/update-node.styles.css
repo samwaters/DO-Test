@@ -1,0 +1,28 @@
+.update-node-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 10px;
+}
+
+.update-node-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.update-node-title {
+    font-size: 20px;
+}
+
+.update-node-field {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
+.action-bar {
+    display: flex;
+    justify-content: space-between;
+}
