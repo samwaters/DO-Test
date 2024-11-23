@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextInput Renders different text inputs 1`] = `
+<div
+  data-testid="textinput"
+>
+  <input
+    class="text-input text-input-small "
+    type="text"
+    value=""
+  />
+  <input
+    class="text-input text-input-medium "
+    type="text"
+    value="med"
+  />
+  <input
+    class="text-input text-input-large "
+    type="text"
+    value=""
+  />
+</div>
+`;

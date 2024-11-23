@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconButton Renders different icon buttons 1`] = `
+<div
+  data-testid="iconbtns"
+>
+  <button
+    class="icon-button small"
+    data-tooltip-id="btn1"
+  />
+  <button
+    class="icon-button medium"
+    data-tooltip-id="btn2"
+  />
+  <button
+    class="icon-button large"
+    data-tooltip-id="btn3"
+  />
+</div>
+`;

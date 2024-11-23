@@ -12,14 +12,15 @@ interface Props extends PropsWithChildren {
 
 export const Modal = ({ arrow = true, children, title }: Props) => {
     const { open, setOpen, setTargetNodeId, targetNodeId } = useModal()
-    const { flowToScreenPosition, getNode } = useReactFlow()
+    const { flowToScreenPosition, getNode, getZoom } = useReactFlow()
     if (!open || !targetNodeId) return false
     const node = getNode(targetNodeId)
     if (!node) return false
     const position = flowToScreenPosition(node.position)
 
-    const xPos = position.x + (node.measured?.width ?? 0) * 2 + 16
-    const yPos = position.y - 75 + (node.measured?.height ?? 0)
+    const zoom = getZoom() // Zoom goes from 0.5 to 2
+    const xPos = position.x + (node.measured?.width ?? 0) * zoom + 16
+    const yPos = position.y - 75 + ((node.measured?.height ?? 0) / 2) * zoom
 
     const handleClose = () => {
         setTargetNodeId(null)
