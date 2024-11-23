@@ -23,6 +23,7 @@ import "./styles.css"
 import EmailNode from "./nodes/EmailNode"
 import { MenuBar } from "@/app/components/menubar/menubar"
 import { UpdateNodeModal } from "@/app/components/modal/update-node/update-node"
+import { Notifications } from "@/app/components/notifications/notifications"
 
 let id = 0
 const getId = () => `dndnode_${id++}`
@@ -117,6 +118,7 @@ const AutomationBuilder = () => {
     return (
         <div className="container">
             <MenuBar />
+            <Notifications />
             <div className="automation-builder">
                 <div className="reactflow-wrapper" ref={reactFlowWrapper}>
                     <ReactFlow

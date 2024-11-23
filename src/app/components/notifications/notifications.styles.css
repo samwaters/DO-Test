@@ -1,0 +1,11 @@
+.notifications-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 200px;
+    left: calc(50% - 200px);
+    overflow: scroll;
+    position: absolute;
+    top: 30px;
+    width: 400px;
+}

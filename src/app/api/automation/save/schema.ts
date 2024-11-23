@@ -3,7 +3,7 @@ import { z } from "zod"
 export const schema = z.object({
     nodes: z
         .object({
-            id: z.number(),
+            id: z.string(),
             position: z.object({
                 x: z.number(),
                 y: z.number(),
@@ -11,7 +11,7 @@ export const schema = z.object({
             data: z.object({
                 label: z.string(),
             }),
-            type: z.string(),
+            type: z.string().optional(),
         })
         .array(),
 })
