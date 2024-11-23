@@ -5,7 +5,7 @@
     color: var(--text);
     height: 150px;
     position: absolute;
-    width: 400px
+    width: 400px;
 }
 
 .modal-arrow {
@@ -17,4 +17,32 @@
     position: absolute;
     top: calc(50% - 16px);
     width: 0;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 10px;
+}
+
+.modal-header {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.modal-title {
+    color: var(--text);
+    flex: 1;
+    font-size: 20px;
+}
+
+.modal-actions {
+    align-items: flex-end;
+    display: flex;
+}
+
+.modal-body {
+    flex: 1;
 }

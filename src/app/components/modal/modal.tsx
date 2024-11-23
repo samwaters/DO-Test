@@ -1,21 +1,49 @@
-import {useModal} from "@/app/contexts/modalcontext";
+import { useModal } from "@/app/contexts/modalcontext"
 import "./modal.styles.css"
-import {useReactFlow} from "@xyflow/react";
-import {UpdateNode} from "@/app/components/modal/update-node/update-node";
+import { useReactFlow } from "@xyflow/react"
+import { PropsWithChildren } from "react"
+import { IconButton } from "@/app/components/ui/iconbutton"
+import { MdOutlineClose } from "react-icons/md"
 
-export const Modal = () => {
-    const { open, targetNodeId } = useModal()
+interface Props extends PropsWithChildren {
+    arrow?: boolean
+    title: string
+}
+
+export const Modal = ({ arrow = true, children, title }: Props) => {
+    const { open, setOpen, setTargetNodeId, targetNodeId } = useModal()
     const { flowToScreenPosition, getNode } = useReactFlow()
-    if(!open || !targetNodeId) return false
+    if (!open || !targetNodeId) return false
     const node = getNode(targetNodeId)
-    if(!node) return false
+    if (!node) return false
     const position = flowToScreenPosition(node.position)
 
-    const xPos = position.x + ((node.measured?.width ?? 0) * 2) + 16
+    const xPos = position.x + (node.measured?.width ?? 0) * 2 + 16
     const yPos = position.y - 75 + (node.measured?.height ?? 0)
 
-    return <div className="modal-wrapper" style={{ left: xPos, top: yPos }}>
-        <div className="modal-arrow"></div>
-        <UpdateNode nodeId={targetNodeId}/>
-    </div>
+    const handleClose = () => {
+        setTargetNodeId(null)
+        setOpen(false)
+    }
+
+    return (
+        <div className="modal-wrapper" style={{ left: xPos, top: yPos }}>
+            {arrow && <div className="modal-arrow"></div>}
+            <div className="modal-content">
+                <div className="modal-header">
+                    <div className="modal-title">{title}</div>
+                    <div className="modal-actions">
+                        <IconButton
+                            icon={<MdOutlineClose />}
+                            id="modal-close"
+                            onClick={handleClose}
+                            size="small"
+                            tooltip="Close"
+                        />
+                    </div>
+                </div>
+                <div className="modal-body">{children}</div>
+            </div>
+        </div>
+    )
 }

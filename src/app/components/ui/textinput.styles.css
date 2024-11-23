@@ -4,6 +4,10 @@
     outline: none;
 }
 
+.text-input-fullwidth {
+    width: 100%;
+}
+
 .text-input-small {
     font-size: 12px;
     padding: 5px 10px;

@@ -1,4 +1,4 @@
-import {MouseEvent, PropsWithChildren} from "react"
+import { MouseEvent, PropsWithChildren } from "react"
 import "./button.styles.css"
 
 interface Props extends PropsWithChildren {
@@ -7,7 +7,9 @@ interface Props extends PropsWithChildren {
     variant: "primary" | "secondary"
 }
 export const Button = ({ children, onClick, size, variant }: Props) => {
-    return <button className={`btn btn-${size} btn-${variant}`} onClick={onClick}>
-        {children}
-    </button>
+    return (
+        <button className={`btn btn-${size} btn-${variant}`} onClick={onClick}>
+            {children}
+        </button>
+    )
 }

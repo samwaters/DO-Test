@@ -21,7 +21,7 @@
 
 .btn-primary {
     background-color: var(--primary);
-    color: var(--text)
+    color: var(--text);
 }
 
 .btn-secondary {

@@ -1,7 +1,7 @@
-import "@testing-library/jest-dom";
+import "@testing-library/jest-dom"
 
 describe("Page", () => {
-  it("basic test", () => {
-    expect(true).toBe(true);
-  });
-});
+    it("basic test", () => {
+        expect(true).toBe(true)
+    })
+})
