@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, useEffect, useState } from "react"
 import { useReactFlow } from "@xyflow/react"
 import { Button } from "@/app/components/ui/button"
 import { useModal } from "@/app/contexts/modalcontext"
@@ -10,7 +10,12 @@ export const UpdateNodeModal = () => {
     const { getNode, updateNodeData } = useReactFlow()
     const { setOpen, targetNodeId, setTargetNodeId } = useModal()
     const node = getNode(targetNodeId ?? "")
-    const [nodeName, setNodeName] = useState<string | undefined>(node?.data?.label as string)
+    const [nodeName, setNodeName] = useState<string | undefined>("")
+
+    useEffect(() => {
+        if (!node) return
+        setNodeName(node.data.label as string)
+    }, [node])
 
     const handleCancel = () => {
         setTargetNodeId(null)
@@ -24,6 +29,10 @@ export const UpdateNodeModal = () => {
     const handleSave = () => {
         if (!targetNodeId) return
         updateNodeData(targetNodeId, { label: nodeName })
+        // Note: Closing the modal here is a deliberate decision
+        // Because it is unlikely the user will want to update the name several times
+        setTargetNodeId(null)
+        setOpen(false)
     }
 
     return (
