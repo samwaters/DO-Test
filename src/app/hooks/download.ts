@@ -6,11 +6,13 @@ export const useDownload = () => {
     const { getNodes, getNodesBounds } = useReactFlow()
     const imageWidth = 1024
     const imageHeight = 768
-    const imageElement: HTMLElement = document.querySelector(".react-flow__viewport")!
 
     return () => {
         const nodesBounds = getNodesBounds(getNodes())
         const viewport = getViewportForBounds(nodesBounds, imageWidth, imageHeight, 0.5, 2, 10)
+        // Fix for next's prerender
+        if (!document) return
+        const imageElement: HTMLElement = document.querySelector(".react-flow__viewport")!
         toPng(imageElement, {
             backgroundColor: "#1a365d",
             width: imageWidth,
