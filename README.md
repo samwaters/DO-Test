@@ -1,5 +1,28 @@
 # Senior frontend role
 
+## Libraries Used:
+- `html-to-image`: Used to create PNG images of the workflow
+- `react-icons`: Used to show icons in the UI
+- `react-tooltip`: Used to show simple tooltips on UI elements
+- `@testing-library/user-event`: Used in Jest to test events
+- `husky`: Used to enforce code standards on commit
+- `prettier`: Used to auto-format code
+- `zod`: Used to validate API requests
+
+## Sample Unit Tests
+- Simple UI component tests reside in `ui/__tests__/`
+- A context test is in `contexts/__tests__/notificationcontext.test.tsx`
+- A test with the ReactFlow provider is in `menubar/__tests__/menubar.test.tsx`
+- A test that mocks ReactFlow entirely along with the save functionality is in `hooks/__tests__/save.test.tsx`
+
+## Further Improvements
+- Better handle the positioning of the modal if it would go off the screen
+- Better error handling if the save fails
+- Cooldown on save button to prevent repeated api calls 
+- Code splitting to reduce bundle size
+- Translations using `react-i18next`
+- E2E tests using Cypress or Playwright
+
 ## Create a simple automation builder
 
 The goal of that exercice is to create an automation builder containing nodes (that could be actions) and edges (to link nodes with each other) using the code in this repo.
