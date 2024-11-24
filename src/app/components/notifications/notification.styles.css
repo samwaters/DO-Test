@@ -9,6 +9,7 @@
 }
 
 .notification-icon {
+    color: var(--text);
 }
 
 .notification-text {

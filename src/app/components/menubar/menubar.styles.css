@@ -15,6 +15,7 @@
 }
 
 .menubar-logo {
+    color: var(--text);
     font-size: 28px;
 }
 .menubar-title {
