@@ -18,6 +18,7 @@
 ## Further Improvements
 - Better handle the positioning of the modal if it would go off the screen
 - Better error handling if the save fails
+- Create more colour variables for greater control over palette
 - Cooldown on save button to prevent repeated api calls 
 - Code splitting to reduce bundle size
 - Translations using `react-i18next`
